@@ -1,0 +1,18 @@
+{
+  "name": "limgram",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/shing100/Limgram-backend.git",
+  "author": "DESKTOP-CN9OS9T\\shing <shing100@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "graphql-yoga": "^1.17.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  }
+}
