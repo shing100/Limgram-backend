@@ -1,6 +1,10 @@
 # Limgram
 
 
+## Prisma
+https://www.prisma.io/
+- https://www.prisma.io/docs
+
 ## install
 - yarn add typescript ts-node
 - yarn add graphql-yoga
