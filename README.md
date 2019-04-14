@@ -10,3 +10,4 @@
 - yarn add cors helmet morgan
 - yarn add babel-runtime gql-merge graphql-to-typescript
 - yarn add dotenv
+- yarn add global prisma
