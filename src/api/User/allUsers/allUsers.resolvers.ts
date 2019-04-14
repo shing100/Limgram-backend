@@ -3,9 +3,7 @@ import { Resolvers } from "../../../types/resolvers";
 
 const resolvers: Resolvers = {
     Query: {
-        allUsers: async (_, __, context)=> {
-            return await prisma.users();
-        }
+        allUsers: async () => await prisma.users()
     }
 };
 
