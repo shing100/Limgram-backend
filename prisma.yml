@@ -1,7 +1,0 @@
-#endpoint: https://us1.prisma.sh/lim-geun-b4e6fd/limgram/dev
-endpoint: https://us1.prisma.sh/lim-geun-b4e6fd/limgram/dev
-datamodel: datamodel.prisma
-
-generate:
-  - generator: typescript-client
-    output: ./generated/prisma-client/
