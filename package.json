@@ -19,6 +19,7 @@
     "merge-graphql-schemas": "^1.5.8",
     "morgan": "^1.9.1",
     "prisma": "^1.30.1",
+    "prisma-client-lib": "^1.30.1",
     "ts-node": "^8.0.3",
     "typescript": "^3.4.3"
   },
@@ -30,7 +31,9 @@
     "nodemon": "^1.18.11"
   },
   "scripts": {
-    "deploy" : "prisma deploy",
+    "deploy": "prisma deploy",
+    "generate": "prisma generate",
+    "prisma": "yarn run deploy && yarn run generate",
     "dev": "nodemon --exec ts-node src/index.ts -e ts,graphql",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"

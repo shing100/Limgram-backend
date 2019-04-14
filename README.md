@@ -15,3 +15,4 @@ https://www.prisma.io/
 - yarn add babel-runtime gql-merge graphql-to-typescript
 - yarn add dotenv
 - yarn add global prisma
+- yarn add prisma-client-lib
