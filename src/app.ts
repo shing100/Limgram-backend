@@ -1,6 +1,5 @@
 import cors from "cors";
 import { GraphQLServer } from "graphql-yoga";
-import { prisma } from "../generated/prisma-client";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
@@ -11,7 +10,7 @@ class App {
     constructor() {
       this.app = new GraphQLServer({
         schema,
-        context: { prisma }
+        context: ({ request }) => ({ request })
       })
       this.middlewares();
     }
