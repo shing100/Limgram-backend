@@ -10,7 +10,6 @@ const resovlers: Resolvers = {
                 const existUser = await prisma.user({email: args.email, username: args.username});
                 if(!existUser){
                     const notNull = cleanNullArgs(args);
-                    console.log(notNull)
                     const user = await prisma.createUser({
                         ...notNull
                     });

@@ -64,8 +64,14 @@ type createAccountResponse {
 
 type Mutation {
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
+  requestSecret(email: String): requestSecretRespone!
 }
 
 type Query {
   something: String!
+}
+
+type requestSecretRespone {
+  ok: Boolean!
+  error: String
 }
