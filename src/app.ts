@@ -3,6 +3,8 @@ import { GraphQLServer } from "graphql-yoga";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
+import passport from "passport";
+import "./utils/passport";
 
 class App {
     public app: GraphQLServer;
@@ -17,6 +19,7 @@ class App {
         this.app.express.use(cors());
         this.app.express.use(logger("dev"));
         this.app.express.use(helmet());
+        this.app.express.use(passport.authenticate("jwt"));
     }
 }
 

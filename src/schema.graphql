@@ -56,15 +56,22 @@ type Message {
   room: Room!
 }
 
+type confirmSecretResponse {
+  ok: Boolean!
+  error: String
+  token: String
+}
+
+type Mutation {
+  confirmSecret(secret: String!, email: String!): confirmSecretResponse!
+  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
+  requestSecret(email: String): requestSecretRespone!
+}
+
 type createAccountResponse {
   ok: Boolean!
   error: String
   user: User
-}
-
-type Mutation {
-  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
-  requestSecret(email: String): requestSecretRespone!
 }
 
 type Query {

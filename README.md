@@ -46,3 +46,12 @@ https://www.prisma.io/
 
 - https://sendgrid.com/blog/sending-email-nodemailer-sendgrid/
 - yarn add nodemailer-sendgrid-transport
+
+> JWT
+- http://www.passportjs.org/
+- https://github.com/mikenicholson/passport-jwt
+- yarn add passport-jwt passport
+- yarn add jsonwebtoken
+
+> Random Keygen
+- https://randomkeygen.com/

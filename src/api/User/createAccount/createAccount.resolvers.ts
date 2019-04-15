@@ -3,7 +3,7 @@ import { Resolvers } from "../../../types/resolvers";
 import { CreateAccountMutationArgs } from "../../../types/graph";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
 
-const resovlers: Resolvers = {
+const resolvers: Resolvers = {
     Mutation: {
         createAccount: async (_, args: CreateAccountMutationArgs) => {
             try {
@@ -36,4 +36,4 @@ const resovlers: Resolvers = {
     }
 };
 
-export default resovlers;
+export default resolvers;

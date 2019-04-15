@@ -1,6 +1,6 @@
 import { Resolvers } from "../../../types/resolvers";
 import { RequestSecretMutationArgs } from "../../../types/graph";
-import { generateSecret } from "../../../utils/utils";
+import { generateSecret, sendSecretMail } from "../../../utils/utils";
 import { prisma } from "../../../../generated/prisma-client";
 
 const resolvers: Resolvers = {
@@ -11,6 +11,7 @@ const resolvers: Resolvers = {
             console.log(loginSecret);
             try {
                 if(email && loginSecret){
+                    await sendSecretMail(email, loginSecret);
                     await prisma.updateUser({
                         data: { loginSecret },
                         where: { email }
