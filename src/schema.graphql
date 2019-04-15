@@ -1,3 +1,15 @@
+type toggleLikeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  toggleLike(postId: String!): toggleLikeResponse!
+  confirmSecret(secret: String!, email: String!): confirmSecretResponse!
+  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
+  requestSecret(email: String): requestSecretRespone!
+}
+
 type User {
   id: ID!
   username: String!
@@ -60,12 +72,6 @@ type confirmSecretResponse {
   ok: Boolean!
   error: String
   token: String
-}
-
-type Mutation {
-  confirmSecret(secret: String!, email: String!): confirmSecretResponse!
-  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
-  requestSecret(email: String): requestSecretRespone!
 }
 
 type createAccountResponse {

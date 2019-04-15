@@ -6,9 +6,8 @@ import { generateToken } from "../../../utils/utils";
 
 const resolvers: Resolvers = {
     Mutation: {
-        confirmSecret: async (_, args: ConfirmSecretMutationArgs, { request }): Promise<confirmSecretResponse> => {
+        confirmSecret: async (_, args: ConfirmSecretMutationArgs): Promise<confirmSecretResponse> => {
             try {
-                //console.log(request);
                 const { email, secret } = args;
                 const user = await prisma.user({ email })
                 if(user){
