@@ -26,6 +26,7 @@ https://www.prisma.io/
 - https://www.prisma.io/docs
 
 ## install
+> 환경
 - yarn add typescript ts-node
 - yarn add graphql-yoga
 - yarn add nodemon -D
@@ -34,5 +35,14 @@ https://www.prisma.io/
 - yarn add cors helmet morgan
 - yarn add babel-runtime gql-merge graphql-to-typescript
 - yarn add dotenv
+
+> Prisma
 - yarn add global prisma
 - yarn add prisma-client-lib
+
+> 이메일 사용 관련
+- https://nodemailer.com/about/
+- yarn add nodemailer
+
+- https://sendgrid.com/blog/sending-email-nodemailer-sendgrid/
+- yarn add nodemailer-sendgrid-transport

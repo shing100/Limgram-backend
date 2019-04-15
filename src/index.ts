@@ -1,5 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config();
+import path from "path";
+dotenv.config({
+    path: path.resolve(__dirname, ".env")
+});
 
 import { Options } from "graphql-yoga";
 import app from "./app";
