@@ -1,6 +1,6 @@
 import { Resolvers } from "../../../types/resolvers";
 import { RequestSecretMutationArgs } from "../../../types/graph";
-import { generateSecret } from "../../../utils/generateSecret";
+import { generateSecret } from "../../../utils/utils";
 import { prisma } from "../../../../generated/prisma-client";
 
 const resolvers: Resolvers = {
