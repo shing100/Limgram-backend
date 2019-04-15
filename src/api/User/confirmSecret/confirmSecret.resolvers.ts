@@ -1,7 +1,7 @@
 import { Resolvers } from "../../../types/resolvers";
 import { ConfirmSecretMutationArgs, confirmSecretResponse } from "../../../types/graph";
 import { prisma } from "../../../../generated/prisma-client";
-import { generateToken } from "../../../utils/passport";
+import { generateToken } from "../../../utils/utils";
 
 
 const resolvers: Resolvers = {

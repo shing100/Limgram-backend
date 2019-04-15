@@ -1,16 +1,17 @@
 import cors from "cors";
 import { GraphQLServer } from "graphql-yoga";
+import { prisma } from "../generated/prisma-client";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
-import passport from "passport";
-import "./utils/passport";
+import { authenticateJwt } from "./utils/passport";
 
 class App {
     public app: GraphQLServer;
     constructor() {
       this.app = new GraphQLServer({
-        schema
+        schema,
+        context: { prisma }
       })
       this.middlewares();
     }
@@ -19,7 +20,7 @@ class App {
         this.app.express.use(cors());
         this.app.express.use(logger("dev"));
         this.app.express.use(helmet());
-        this.app.express.use(passport.authenticate("jwt"));
+        this.app.express.use(authenticateJwt);
     }
 }
 
