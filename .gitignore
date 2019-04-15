@@ -6,3 +6,5 @@ generated
 .next
 
 prisma.yml
+
+docker-compose.yml

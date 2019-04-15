@@ -57,13 +57,7 @@ type Message {
   room: Room!
 }
 
-type allUsersResponse {
-  ok: Boolean!
-  error: String
-  user: [User!]!
-}
-
 type Query {
-  allUsers: allUsersResponse!
+  allUsers: [User!]!
   userById(id: String!): User!
 }
