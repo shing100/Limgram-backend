@@ -16,7 +16,10 @@ Instragram clone with Express + Prisma + React and React Native
 - [ ] Upload a photo
 - [ ] Edit the photo (Delete)
 - [ ] See the feed
-
+- [ ] See rooms
+- [ ] See room
+- [ ] SendPrivate Message
+- [ ] Receive Message (realtime)
 
 ## Random word
 - https://www.randomlists.com/random-adjectives
