@@ -1,13 +1,20 @@
-type toggleLikeResponse {
+type addCommentResponse {
   ok: Boolean!
   error: String
+  comment: Comment
 }
 
 type Mutation {
+  addComment(text: String!, postId: String!): addCommentResponse!
   toggleLike(postId: String!): toggleLikeResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
   requestSecret(email: String): requestSecretRespone!
+}
+
+type toggleLikeResponse {
+  ok: Boolean!
+  error: String
 }
 
 type User {
