@@ -75,6 +75,17 @@ type Message {
   room: Room!
 }
 
+type searchPostResponse {
+  ok: Boolean
+  error: String
+  post: [Post!]
+}
+
+type Query {
+  searchPost(term: String!): searchPostResponse!
+  something: String!
+}
+
 type confirmSecretResponse {
   ok: Boolean!
   error: String
@@ -85,10 +96,6 @@ type createAccountResponse {
   ok: Boolean!
   error: String
   user: User
-}
-
-type Query {
-  something: String!
 }
 
 type requestSecretRespone {

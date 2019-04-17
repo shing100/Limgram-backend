@@ -1,0 +1,9 @@
+type searchPostResponse {
+    ok: Boolean
+    error: String
+    post: [Post!]
+}
+
+type Query {
+  searchPost(term: String!): searchPostResponse!
+}
