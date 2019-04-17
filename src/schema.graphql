@@ -84,6 +84,7 @@ type searchPostResponse {
 type Query {
   searchPost(term: String!): searchPostResponse!
   something: String!
+  searchUser(term: String!): searchUserResponse!
 }
 
 type confirmSecretResponse {
@@ -101,4 +102,10 @@ type createAccountResponse {
 type requestSecretRespone {
   ok: Boolean!
   error: String
+}
+
+type searchUserResponse {
+  ok: Boolean
+  error: String
+  user: [User!]
 }

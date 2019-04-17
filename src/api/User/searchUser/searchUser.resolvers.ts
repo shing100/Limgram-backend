@@ -1,11 +1,11 @@
 import { Resolvers } from "../../../types/resolvers";
 import { isAuthenticated } from "../../../utils/privateAuth";
-import { SearchPostQueryArgs } from "../../../types/graph";
 import { prisma } from "../../../../generated/prisma-client";
+import { SearchUserQueryArgs } from "src/types/graph";
 
 const resolvers: Resolvers = {
     Query: {
-        searchUser: async (_, args: SearchPostQueryArgs, { request }) => {
+        searchUser: async (_, args: SearchUserQueryArgs , { request }) => {
             isAuthenticated(request);
             prisma.users({
                 where: {
