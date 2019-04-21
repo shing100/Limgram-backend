@@ -14,6 +14,10 @@ const resolvers: Resolvers = {
                     if(user.loginSecret === secret){
                         // JWT
                         const token = generateToken(user.id);
+                        await prisma.updateUser({
+                            where: {id: user.id}, 
+                            data: {loginSecret: ""}
+                        });
                         return {
                             ok: true,
                             error: null,
