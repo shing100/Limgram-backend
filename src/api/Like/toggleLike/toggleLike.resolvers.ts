@@ -1,5 +1,6 @@
 import { Resolvers } from "../../../types/resolvers";
 import { ToggleLikeMutationArgs, toggleLikeResponse } from "../../../types/graph";
+import { like } from "../Like";
 
 const resovlers: Resolvers = {
     Mutation: {
@@ -50,7 +51,8 @@ const resovlers: Resolvers = {
                 }
             }
         }
-    }
+    },
+    ...like
 }
 
 export default resovlers;
