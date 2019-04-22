@@ -1,24 +1,19 @@
 import { Resolvers } from "../../../types/resolvers";
-import { EditUserMutationArgs, editUserResponse } from "../../../types/graph";
-import cleanNullArgs from "../../../utils/cleanNullArgs";
+import { meResponse } from "../../../types/graph";
+import { user } from "../User";
 
 const resolvers: Resolvers = {
-    Mutation: {
-        editUser: async(_, args: EditUserMutationArgs, {request, isAuthenticated, prisma}): Promise<editUserResponse> => {
+    Query: {
+        me: async (_, __, { request, isAuthenticated, prisma }): Promise<meResponse> => {
             isAuthenticated(request);
-            const notNull = cleanNullArgs(args);
             const { user } = request;
             try {
-                const updateUser = await prisma.updateUser({
-                    where: { id: user.id },
-                    data: { ...notNull }
-                })
-                if (updateUser) {
-                    //request.user = updateUser;
+                const userProfile = await prisma.user({id: user.id});
+                if (userProfile) {
                     return {
                         ok: true,
                         error: null,
-                        user: updateUser
+                        user: userProfile
                     }
                 }else {
                     return {
@@ -35,7 +30,8 @@ const resolvers: Resolvers = {
                 }
             }
         }
-    }
+    },
+    ...user
 }
 
 export default resolvers;

@@ -26,9 +26,13 @@ type User {
   email: String!
   firstName: String
   lastName: String
+  fullName: String
+  amIFollowing: Boolean!
   bio: String
   following: [User!]!
+  followingCount: Int!
   followers: [User!]!
+  followersCount: Int!
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
@@ -44,6 +48,7 @@ type Post {
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!
+  isliked: Boolean!
 }
 
 type Like {
@@ -87,6 +92,7 @@ type searchPostResponse {
 
 type Query {
   searchPost(term: String!): searchPostResponse!
+  me: meResponse!
   searchUser(term: String!): searchUserResponse!
   seeUser(id: String!): seeUserResponse!
 }
@@ -112,6 +118,12 @@ type editUserResponse {
 type followResponse {
   ok: Boolean!
   error: String
+}
+
+type meResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type requestSecretRespone {

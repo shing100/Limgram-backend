@@ -1,5 +1,6 @@
 import { Resolvers } from "../../../types/resolvers";
 import { AddCommentMutationArgs, addCommentResponse } from "../../../types/graph";
+import { comment } from "../Comment"; 
 
 const resolvers : Resolvers = {
     Mutation: {
@@ -33,9 +34,9 @@ const resolvers : Resolvers = {
                     comment: null
                 }
             }
-            
         }
-    }
+    },
+    ...comment
 }
 
 export default resolvers;
