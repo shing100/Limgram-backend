@@ -9,7 +9,9 @@ type Mutation {
   toggleLike(postId: String!): toggleLikeResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
+  follow(id: String!): followResponse!
   requestSecret(email: String): requestSecretRespone!
+  unfollow(id: String!): unfollowResponse!
 }
 
 type toggleLikeResponse {
@@ -100,6 +102,11 @@ type createAccountResponse {
   user: User
 }
 
+type followResponse {
+  ok: Boolean!
+  error: String
+}
+
 type requestSecretRespone {
   ok: Boolean!
   error: String
@@ -109,4 +116,9 @@ type searchUserResponse {
   ok: Boolean
   error: String
   user: [User!]
+}
+
+type unfollowResponse {
+  ok: Boolean!
+  error: String
 }

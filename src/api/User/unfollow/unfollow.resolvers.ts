@@ -1,23 +1,23 @@
 import { Resolvers } from "src/types/resolvers";
-import { FollowMutationArgs, followResponse } from "src/types/graph";
+import { UnfollowMutationArgs, unfollowResponse } from "src/types/graph";
 import { isAuthenticated } from "src/utils/privateAuth";
 import { prisma } from "generated/prisma-client";
 
 
 const resolvers: Resolvers = {
     Mutation: {
-        follow: async(_, args: FollowMutationArgs, {request}): Promise<followResponse> => {
+        unfollow: async(_, args: UnfollowMutationArgs, {request}): Promise<unfollowResponse> => {
             isAuthenticated(request);
-            const id : string = args.id;
+            const id: string = args.id;
             const { user } = request;
             try {
                 await prisma.updateUser({
-                    where: {
+                    where: { 
                         id: user.id
                     },
                     data: {
                         following: {
-                            connect: {
+                            disconnect: {
                                 id
                             }
                         }
