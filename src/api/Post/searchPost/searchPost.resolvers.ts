@@ -1,12 +1,9 @@
 import { Resolvers } from "../../../types/resolvers";
-import { isAuthenticated } from "../../../utils/privateAuth";
-import { SearchPostQueryArgs } from "../../../types/graph";
-import { prisma } from "../../../../generated/prisma-client";
-
+import { SearchPostQueryArgs, searchPostResponse } from "../../../types/graph";
 
 const resolvers: Resolvers = {
     Query: {
-        searchPost: async (_, args: SearchPostQueryArgs, {request}) => {
+        searchPost: async (_, args: SearchPostQueryArgs, {request, isAuthenticated, prisma}): Promise<searchPostResponse> => {
             isAuthenticated(request)
             try {
                 const post = await prisma.posts({

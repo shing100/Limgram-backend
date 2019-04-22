@@ -1,11 +1,10 @@
 import { Resolvers } from "../../../types/resolvers";
-import { RequestSecretMutationArgs } from "../../../types/graph";
+import { RequestSecretMutationArgs, requestSecretRespone } from "../../../types/graph";
 import { generateSecret, sendSecretMail } from "../../../utils/utils";
-import { prisma } from "../../../../generated/prisma-client";
 
 const resolvers: Resolvers = {
     Mutation: {
-        requestSecret: async (_, args: RequestSecretMutationArgs ) => {
+        requestSecret: async (_, args: RequestSecretMutationArgs, { prisma }): Promise<requestSecretRespone> => {
             const { email } = args;
             const loginSecret: string = generateSecret();
             console.log(loginSecret);

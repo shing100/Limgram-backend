@@ -1,12 +1,9 @@
-import { Resolvers } from "src/types/resolvers";
-import { UnfollowMutationArgs, unfollowResponse } from "src/types/graph";
-import { isAuthenticated } from "src/utils/privateAuth";
-import { prisma } from "generated/prisma-client";
-
+import { Resolvers } from "../../../types/resolvers";
+import { UnfollowMutationArgs, unfollowResponse } from "../../../types/graph";
 
 const resolvers: Resolvers = {
     Mutation: {
-        unfollow: async(_, args: UnfollowMutationArgs, {request}): Promise<unfollowResponse> => {
+        unfollow: async(_, args: UnfollowMutationArgs, {request, isAuthenticated, prisma}): Promise<unfollowResponse> => {
             isAuthenticated(request);
             const id: string = args.id;
             const { user } = request;

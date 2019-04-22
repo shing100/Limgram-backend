@@ -1,11 +1,9 @@
 import { Resolvers } from "../../../types/resolvers";
-import { isAuthenticated } from "../../../utils/privateAuth";
-import { prisma } from "../../../../generated/prisma-client";
-import { SearchUserQueryArgs } from "../../../types/graph";
+import { SearchUserQueryArgs, searchUserResponse } from "../../../types/graph";
 
 const resolvers: Resolvers = {
     Query: {
-        searchUser: async (_, args: SearchUserQueryArgs , { request }) => {
+        searchUser: async (_, args: SearchUserQueryArgs , { request, isAuthenticated, prisma }): Promise<searchUserResponse> => {
             isAuthenticated(request);
             try {
                 const user = await prisma.users({

@@ -1,11 +1,10 @@
-import { prisma } from "../../../../generated/prisma-client";
 import { Resolvers } from "../../../types/resolvers";
-import { CreateAccountMutationArgs } from "../../../types/graph";
+import { CreateAccountMutationArgs, createAccountResponse } from "../../../types/graph";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
 
 const resolvers: Resolvers = {
     Mutation: {
-        createAccount: async (_, args: CreateAccountMutationArgs) => {
+        createAccount: async (_, args: CreateAccountMutationArgs, {prisma}): Promise<createAccountResponse> => {
             try {
                 const existUser = await prisma.user({email: args.email, username: args.username});
                 if(!existUser){

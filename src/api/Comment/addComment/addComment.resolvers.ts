@@ -1,12 +1,9 @@
 import { Resolvers } from "../../../types/resolvers";
-import { AddCommentMutationArgs } from "../../../types/graph";
-import { isAuthenticated } from "../../../utils/privateAuth";
-import { prisma } from "../../../../generated/prisma-client";
-
+import { AddCommentMutationArgs, addCommentResponse } from "../../../types/graph";
 
 const resolvers : Resolvers = {
     Mutation: {
-        addComment: async (_, args: AddCommentMutationArgs, {request}) => {
+        addComment: async (_, args: AddCommentMutationArgs, {request, isAuthenticated, prisma}): Promise<addCommentResponse> => {
             isAuthenticated(request);
             const { text, postId } = args;
             const { user } = request;

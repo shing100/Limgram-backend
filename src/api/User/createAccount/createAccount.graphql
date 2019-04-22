@@ -13,7 +13,3 @@ type Mutation {
         bio: String
     ): createAccountResponse!
 }
-
-type Query {
-    something: String!
-}

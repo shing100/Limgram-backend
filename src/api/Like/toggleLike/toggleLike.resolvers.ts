@@ -1,12 +1,9 @@
 import { Resolvers } from "../../../types/resolvers";
 import { ToggleLikeMutationArgs, toggleLikeResponse } from "../../../types/graph";
-import { isAuthenticated } from "../../../utils/privateAuth";
-import { prisma } from "../../../../generated/prisma-client";
-
 
 const resovlers: Resolvers = {
     Mutation: {
-        toggleLike: async (_, args: ToggleLikeMutationArgs, { request }): Promise<toggleLikeResponse> => {
+        toggleLike: async (_, args: ToggleLikeMutationArgs, { request, isAuthenticated, prisma }): Promise<toggleLikeResponse> => {
             isAuthenticated(request);
             const { postId } = args;
             const { user } = request;

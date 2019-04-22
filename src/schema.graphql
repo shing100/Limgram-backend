@@ -9,6 +9,7 @@ type Mutation {
   toggleLike(postId: String!): toggleLikeResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
+  editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!
   follow(id: String!): followResponse!
   requestSecret(email: String): requestSecretRespone!
   unfollow(id: String!): unfollowResponse!
@@ -81,13 +82,13 @@ type Message {
 type searchPostResponse {
   ok: Boolean
   error: String
-  post: [Post!]
+  post: [Post]
 }
 
 type Query {
   searchPost(term: String!): searchPostResponse!
-  something: String!
   searchUser(term: String!): searchUserResponse!
+  seeUser(id: String!): seeUserResponse!
 }
 
 type confirmSecretResponse {
@@ -97,6 +98,12 @@ type confirmSecretResponse {
 }
 
 type createAccountResponse {
+  ok: Boolean!
+  error: String
+  user: User
+}
+
+type editUserResponse {
   ok: Boolean!
   error: String
   user: User
@@ -115,7 +122,13 @@ type requestSecretRespone {
 type searchUserResponse {
   ok: Boolean
   error: String
-  user: [User!]
+  user: [User]
+}
+
+type seeUserResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type unfollowResponse {
