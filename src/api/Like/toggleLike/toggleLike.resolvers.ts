@@ -1,11 +1,11 @@
 import { Resolvers } from "../../../types/resolvers";
 import { ToggleLikeMutationArgs, toggleLikeResponse } from "../../../types/graph";
 import { like } from "../Like";
+import privateResolver from "../../../utils/privateAuth";
 
 const resovlers: Resolvers = {
     Mutation: {
-        toggleLike: async (_, args: ToggleLikeMutationArgs, { request, isAuthenticated, prisma }): Promise<toggleLikeResponse> => {
-            isAuthenticated(request);
+        toggleLike: privateResolver(async (_, args: ToggleLikeMutationArgs, { request, prisma }): Promise<toggleLikeResponse> => {
             const { postId } = args;
             const { user } = request;
             const filterOptions = {
@@ -50,7 +50,7 @@ const resovlers: Resolvers = {
                     error: error.message
                 }
             }
-        }
+        })
     },
     ...like
 }

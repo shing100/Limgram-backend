@@ -1,10 +1,10 @@
 import { Resolvers } from "../../../types/resolvers";
 import { SearchPostQueryArgs, searchPostResponse } from "../../../types/graph";
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers: Resolvers = {
     Query: {
-        searchPost: async (_, args: SearchPostQueryArgs, {request, isAuthenticated, prisma}): Promise<searchPostResponse> => {
-            isAuthenticated(request)
+        searchPost: privateResolver(async (_, args: SearchPostQueryArgs, {request, prisma}): Promise<searchPostResponse> => {
             try {
                 const post = await prisma.posts({
                     where: {
@@ -34,7 +34,7 @@ const resolvers: Resolvers = {
                     post: null
                 }
             }
-        }
+        })
     }
 }
 

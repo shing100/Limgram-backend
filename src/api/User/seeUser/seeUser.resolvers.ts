@@ -1,11 +1,11 @@
-import { Resolvers } from "src/types/resolvers";
-import { SeeUserQueryArgs, seeUserResponse } from "src/types/graph";
+import { Resolvers } from "../../../types/resolvers";
+import { SeeUserQueryArgs, seeUserResponse } from "../../../types/graph";
+import privateResolver from "../../../utils/privateAuth";
 
 
 const resolvers: Resolvers = {
     Query: {
-        seeUser: async(_, args: SeeUserQueryArgs, {request, isAuthenticated, prisma}): Promise<seeUserResponse> => {
-            isAuthenticated(request);
+        seeUser: privateResolver(async(_, args: SeeUserQueryArgs, {prisma}): Promise<seeUserResponse> => {
             const id: string = args.id;
             try {
                 const user = await prisma.user({ id });
@@ -29,7 +29,7 @@ const resolvers: Resolvers = {
                     user: null
                 }
             }
-        }
+        })
     }
 }
 

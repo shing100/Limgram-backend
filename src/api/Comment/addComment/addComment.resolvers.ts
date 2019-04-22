@@ -1,11 +1,11 @@
 import { Resolvers } from "../../../types/resolvers";
 import { AddCommentMutationArgs, addCommentResponse } from "../../../types/graph";
 import { comment } from "../Comment"; 
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers : Resolvers = {
     Mutation: {
-        addComment: async (_, args: AddCommentMutationArgs, {request, isAuthenticated, prisma}): Promise<addCommentResponse> => {
-            isAuthenticated(request);
+        addComment: privateResolver(async (_, args: AddCommentMutationArgs, {request, prisma}): Promise<addCommentResponse> => {
             const { text, postId } = args;
             const { user } = request;
             try {
@@ -34,7 +34,7 @@ const resolvers : Resolvers = {
                     comment: null
                 }
             }
-        }
+        })
     },
     ...comment
 }

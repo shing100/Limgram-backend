@@ -1,11 +1,11 @@
 import { Resolvers } from "../../../types/resolvers";
 import { EditUserMutationArgs, editUserResponse } from "../../../types/graph";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers: Resolvers = {
     Mutation: {
-        editUser: async(_, args: EditUserMutationArgs, {request, isAuthenticated, prisma}): Promise<editUserResponse> => {
-            isAuthenticated(request);
+        editUser: privateResolver(async(_, args: EditUserMutationArgs, {request, prisma}): Promise<editUserResponse> => {
             const notNull = cleanNullArgs(args);
             const { user } = request;
             try {
@@ -34,7 +34,7 @@ const resolvers: Resolvers = {
                     user: null
                 }
             }
-        }
+        })
     }
 }
 

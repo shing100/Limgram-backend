@@ -1,10 +1,10 @@
 import { Resolvers } from "../../../types/resolvers";
 import { UnfollowMutationArgs, unfollowResponse } from "../../../types/graph";
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers: Resolvers = {
     Mutation: {
-        unfollow: async(_, args: UnfollowMutationArgs, {request, isAuthenticated, prisma}): Promise<unfollowResponse> => {
-            isAuthenticated(request);
+        unfollow: privateResolver(async(_, args: UnfollowMutationArgs, {request, prisma}): Promise<unfollowResponse> => {
             const id: string = args.id;
             const { user } = request;
             try {
@@ -30,7 +30,7 @@ const resolvers: Resolvers = {
                     error: error.message
                 }
             }
-        }
+        })
     }
 }
 

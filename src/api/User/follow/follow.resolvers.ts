@@ -1,10 +1,10 @@
 import { Resolvers } from "../../../types/resolvers";
 import { FollowMutationArgs, followResponse } from "../../../types/graph";
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers: Resolvers = {
     Mutation: {
-        follow: async(_, args: FollowMutationArgs, {request, isAuthenticated, prisma}): Promise<followResponse> => {
-            isAuthenticated(request);
+        follow: privateResolver(async(_, args: FollowMutationArgs, {request, prisma}): Promise<followResponse> => {
             const id : string = args.id;
             const { user } = request;
             try {
@@ -30,7 +30,7 @@ const resolvers: Resolvers = {
                     error: error.message
                 }
             }
-        }
+        })
     }
 }
 

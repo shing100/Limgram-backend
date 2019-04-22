@@ -4,7 +4,6 @@ import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
 import { authenticateJwt } from "./utils/passport";
-import { isAuthenticated } from "./utils/privateAuth";
 import { prisma } from "../generated/prisma-client";
 
 class App {
@@ -12,7 +11,7 @@ class App {
     constructor() {
       this.app = new GraphQLServer({
         schema,
-        context: ({ request }) => ({ request, isAuthenticated, prisma })
+        context: ({ request }) => ({ request, prisma })
       })
       this.middlewares();
     }

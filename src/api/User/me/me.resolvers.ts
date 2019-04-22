@@ -1,11 +1,11 @@
 import { Resolvers } from "../../../types/resolvers";
 import { meResponse } from "../../../types/graph";
 import { user } from "../User";
+import privateResolver from "../../../utils/privateAuth";
 
 const resolvers: Resolvers = {
     Query: {
-        me: async (_, __, { request, isAuthenticated, prisma }): Promise<meResponse> => {
-            isAuthenticated(request);
+        me: privateResolver(async (_, __, { request, prisma }): Promise<meResponse> => {
             const { user } = request;
             try {
                 const userProfile = await prisma.user({id: user.id});
@@ -29,7 +29,7 @@ const resolvers: Resolvers = {
                     user: null
                 }
             }
-        }
+        })
     },
     ...user
 }
