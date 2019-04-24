@@ -7,6 +7,7 @@ type addCommentResponse {
 type Mutation {
   addComment(text: String!, postId: String!): addCommentResponse!
   toggleLike(postId: String!): toggleLikeResponse!
+  upload(caption: String!, files: [String!]!): uploadResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
   editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!
@@ -27,8 +28,8 @@ type User {
   firstName: String
   lastName: String
   fullName: String
-  amIFollowing: Boolean!
-  itsMe: Boolean!
+  isFollowing: Boolean!
+  isSelf: Boolean!
   bio: String
   following: [User!]!
   followingCount: Int!
@@ -101,6 +102,12 @@ type Query {
 }
 
 type seeFullPostResponse {
+  ok: Boolean!
+  error: String
+  post: Post
+}
+
+type uploadResponse {
   ok: Boolean!
   error: String
   post: Post

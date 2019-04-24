@@ -1,0 +1,9 @@
+type uploadResponse {
+    ok: Boolean!
+    error: String
+    post: Post
+}
+
+type Mutation {
+    upload(caption: String!, files: [String!]!) : uploadResponse!
+}

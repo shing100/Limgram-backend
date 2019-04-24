@@ -10,7 +10,7 @@ export const user = {
         fullName: parent => {
             return `${parent.firstName} ${parent.lastName}`;
         },
-        amIFollowing: async (parent, _, { request }) => {
+        isFollowing: async (parent, _, { request }) => {
             const { user } = request;
             const { id: parentId } = parent;
             try {
@@ -19,23 +19,19 @@ export const user = {
                         id: parentId
                     },
                     {
-                        followers_some: {
+                        following_some: {
                             id: user.id
                         }
                     }]
                 });
                 //console.log(exists);
-                if (exists) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return exists;
             } catch (error) {
                 //console.log(error);
                 return false;
             }
         },
-        itsMe: (parent, _, { request }) => {
+        isSelf: (parent, _, { request }) => {
             const { user } = request;
             const { id: parentId } = parent;
             return user.id === parentId;
