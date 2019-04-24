@@ -19,7 +19,9 @@ export const user = {
                         id: parentId
                     },
                     {
-                        followers_some: user.id
+                        followers_some: {
+                            id: user.id
+                        }
                     }]
                 });
                 //console.log(exists);
