@@ -1,7 +1,6 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/privateAuth";
 
-
 const resovlers: Resolvers = {
     Mutation: {
         upload: privateResolver(async(_, args, { request, prisma }) => {
