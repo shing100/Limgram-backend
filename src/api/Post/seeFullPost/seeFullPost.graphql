@@ -5,5 +5,5 @@ type seeFullPostResponse {
 }
 
 type Query {
-    seeFullPost: seeFullPostResponse!
+    seeFullPost(id: String!): seeFullPostResponse!
 }

@@ -46,8 +46,9 @@ type Post {
   user: User!
   files: [File!]!
   likes: [Like!]!
+  likeCount: Int!
+  isLiked: Boolean!
   comments: [Comment!]!
-  isliked: Boolean!
 }
 
 type Like {
@@ -91,7 +92,7 @@ type searchPostResponse {
 
 type Query {
   searchPost(term: String!): searchPostResponse!
-  seeFullPost: seeFullPostResponse!
+  seeFullPost(id: String!): seeFullPostResponse!
   me: meResponse!
   searchUser(term: String!): searchUserResponse!
   seeUser(id: String!): seeUserResponse!
