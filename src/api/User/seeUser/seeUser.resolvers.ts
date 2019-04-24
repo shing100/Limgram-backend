@@ -3,7 +3,6 @@ import { SeeUserQueryArgs, seeUserResponse } from "../../../types/graph";
 import privateResolver from "../../../utils/privateAuth";
 import { user } from "../User";
 
-
 const resolvers: Resolvers = {
     Query: {
         seeUser: privateResolver(async(_, args: SeeUserQueryArgs, {prisma}): Promise<seeUserResponse> => {
