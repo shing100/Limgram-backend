@@ -1,6 +1,6 @@
 import { prisma } from "../../../generated/prisma-client";
 
-export default {
+export const post = {
     Post: {
         files: ({ id }) => prisma.post({ id }).files(),
         comments: ({ id }) => prisma.post({ id }).comments(),

@@ -1,38 +1,36 @@
 import { Resolvers } from "../../../types/resolvers";
-import { SeeUserQueryArgs, seeUserResponse } from "../../../types/graph";
 import privateResolver from "../../../utils/privateAuth";
-import { user } from "../User";
-
+import { post } from "../Post";
 
 const resolvers: Resolvers = {
     Query: {
-        seeUser: privateResolver(async(_, args: SeeUserQueryArgs, {prisma}): Promise<seeUserResponse> => {
-            const id: string = args.id;
+        seeFullPost: privateResolver(async (_, args, { prisma }) => {
+            const { id } = args;
             try {
-                const user = await prisma.user({ id });
-                if(user){
+                const post = await prisma.post({ id });
+                if(post){
                     return {
                         ok: true,
                         error: null,
-                        user
-                    } 
+                        post
+                    };
                 }else {
                     return {
                         ok: false,
-                        error: "user not found",
-                        user: null
+                        error: "post not found",
+                        post: null
                     }
-                }
+                }               
             } catch (error) {
                 return {
                     ok: false,
                     error: error.message,
-                    user: null
+                    post: null
                 }
             }
         })
     },
-    ...user
+    ...post
 }
 
 export default resolvers;

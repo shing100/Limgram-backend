@@ -91,9 +91,16 @@ type searchPostResponse {
 
 type Query {
   searchPost(term: String!): searchPostResponse!
+  seeFullPost: seeFullPostResponse!
   me: meResponse!
   searchUser(term: String!): searchUserResponse!
   seeUser(id: String!): seeUserResponse!
+}
+
+type seeFullPostResponse {
+  ok: Boolean!
+  error: String
+  post: Post
 }
 
 type confirmSecretResponse {

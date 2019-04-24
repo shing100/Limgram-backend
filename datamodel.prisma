@@ -1,5 +1,5 @@
 type User {
-  id: ID! @unique
+  id: ID! @unique @id
   username: String @unique
   email: String @unique
   firstName: String @default(value: "")
@@ -12,47 +12,61 @@ type User {
   comments: [Comment!]!
   rooms: [Room!]!
   loginSecret: String
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @unique @id
   location: String
   caption: String!
   user: User!
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Like {
-  id: ID! @unique
+  id: ID! @unique @id
   user: User!
   post: Post!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Comment {
-  id: ID! @unique
+  id: ID! @unique @id
   text: String!
   user: User!
   post: Post!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type File {
-  id: ID! @unique
+  id: ID! @unique @id
   url: String!
   post: Post!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Room {
-  id: ID! @unique
+  id: ID! @unique @id
   participants: [User!]!
   messages: [Message!]!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Message {
-  id: ID! @unique
+  id: ID! @unique @id
   text: String!
   from: User! @relation(name: "From")
   to: User! @relation(name: "To")
   room: Room!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
