@@ -7,6 +7,7 @@ type addCommentResponse {
 type Mutation {
   addComment(text: String!, postId: String!): addCommentResponse!
   toggleLike(postId: String!): toggleLikeResponse!
+  editPost(id: String!, caption: String, location: String, action: ACTIONS!): editPostResponse!
   upload(caption: String!, files: [String!]!): uploadResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
   createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
@@ -87,6 +88,17 @@ type Message {
   room: Room!
 }
 
+enum ACTIONS {
+  EDIT
+  DELETE
+}
+
+type editPostResponse {
+  ok: Boolean!
+  error: String
+  post: Post
+}
+
 type searchPostResponse {
   ok: Boolean
   error: String
@@ -95,10 +107,17 @@ type searchPostResponse {
 
 type Query {
   searchPost(term: String!): searchPostResponse!
+  seeFeed: seeFeedResponse!
   seeFullPost(id: String!): seeFullPostResponse!
   me: meResponse!
   searchUser(term: String!): searchUserResponse!
   seeUser(id: String!): seeUserResponse!
+}
+
+type seeFeedResponse {
+  ok: Boolean
+  error: String
+  posts: [Post!]
 }
 
 type seeFullPostResponse {

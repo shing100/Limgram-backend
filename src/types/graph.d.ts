@@ -1,8 +1,9 @@
-export const typeDefs = ["type addCommentResponse {\n  ok: Boolean!\n  error: String\n  comment: Comment\n}\n\ntype Mutation {\n  addComment(text: String!, postId: String!): addCommentResponse!\n  toggleLike(postId: String!): toggleLikeResponse!\n  upload(caption: String!, files: [String!]!): uploadResponse!\n  confirmSecret(secret: String!, email: String!): confirmSecretResponse!\n  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!\n  editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!\n  follow(id: String!): followResponse!\n  requestSecret(email: String): requestSecretRespone!\n  unfollow(id: String!): unfollowResponse!\n}\n\ntype toggleLikeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype User {\n  id: ID!\n  username: String!\n  email: String!\n  firstName: String\n  lastName: String\n  fullName: String\n  isFollowing: Boolean!\n  isSelf: Boolean!\n  bio: String\n  following: [User!]!\n  followingCount: Int!\n  followers: [User!]!\n  followersCount: Int!\n  posts: [Post!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  rooms: [Room!]!\n  loginSecret: String\n}\n\ntype Post {\n  id: ID!\n  location: String\n  caption: String!\n  user: User!\n  files: [File!]!\n  likes: [Like!]!\n  likeCount: Int!\n  isLiked: Boolean!\n  comments: [Comment!]!\n}\n\ntype Like {\n  id: ID!\n  user: User!\n  post: Post!\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User!\n  post: Post!\n}\n\ntype File {\n  id: ID!\n  url: String!\n  post: Post!\n}\n\ntype Room {\n  id: ID!\n  participants: [User!]!\n  messages: [Message!]!\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  to: User!\n  room: Room!\n}\n\ntype searchPostResponse {\n  ok: Boolean\n  error: String\n  post: [Post]\n}\n\ntype Query {\n  searchPost(term: String!): searchPostResponse!\n  seeFullPost(id: String!): seeFullPostResponse!\n  me: meResponse!\n  searchUser(term: String!): searchUserResponse!\n  seeUser(id: String!): seeUserResponse!\n}\n\ntype seeFullPostResponse {\n  ok: Boolean!\n  error: String\n  post: Post\n}\n\ntype uploadResponse {\n  ok: Boolean!\n  error: String\n  post: Post\n}\n\ntype confirmSecretResponse {\n  ok: Boolean!\n  error: String\n  token: String\n}\n\ntype createAccountResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype editUserResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype followResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype meResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype requestSecretRespone {\n  ok: Boolean!\n  error: String\n}\n\ntype searchUserResponse {\n  ok: Boolean\n  error: String\n  user: [User]\n}\n\ntype seeUserResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype unfollowResponse {\n  ok: Boolean!\n  error: String\n}\n"];
+export const typeDefs = ["type addCommentResponse {\n  ok: Boolean!\n  error: String\n  comment: Comment\n}\n\ntype Mutation {\n  addComment(text: String!, postId: String!): addCommentResponse!\n  toggleLike(postId: String!): toggleLikeResponse!\n  editPost(id: String!, caption: String, location: String, action: ACTIONS!): editPostResponse!\n  upload(caption: String!, files: [String!]!): uploadResponse!\n  confirmSecret(secret: String!, email: String!): confirmSecretResponse!\n  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!\n  editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!\n  follow(id: String!): followResponse!\n  requestSecret(email: String): requestSecretRespone!\n  unfollow(id: String!): unfollowResponse!\n}\n\ntype toggleLikeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype User {\n  id: ID!\n  username: String!\n  email: String!\n  firstName: String\n  lastName: String\n  fullName: String\n  isFollowing: Boolean!\n  isSelf: Boolean!\n  bio: String\n  following: [User!]!\n  followingCount: Int!\n  followers: [User!]!\n  followersCount: Int!\n  posts: [Post!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  rooms: [Room!]!\n  loginSecret: String\n}\n\ntype Post {\n  id: ID!\n  location: String\n  caption: String!\n  user: User!\n  files: [File!]!\n  likes: [Like!]!\n  likeCount: Int!\n  isLiked: Boolean!\n  comments: [Comment!]!\n}\n\ntype Like {\n  id: ID!\n  user: User!\n  post: Post!\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User!\n  post: Post!\n}\n\ntype File {\n  id: ID!\n  url: String!\n  post: Post!\n}\n\ntype Room {\n  id: ID!\n  participants: [User!]!\n  messages: [Message!]!\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  to: User!\n  room: Room!\n}\n\nenum ACTIONS {\n  EDIT\n  DELETE\n}\n\ntype editPostResponse {\n  ok: Boolean!\n  error: String\n  post: Post\n}\n\ntype searchPostResponse {\n  ok: Boolean\n  error: String\n  post: [Post]\n}\n\ntype Query {\n  searchPost(term: String!): searchPostResponse!\n  seeFeed: seeFeedResponse!\n  seeFullPost(id: String!): seeFullPostResponse!\n  me: meResponse!\n  searchUser(term: String!): searchUserResponse!\n  seeUser(id: String!): seeUserResponse!\n}\n\ntype seeFeedResponse {\n  ok: Boolean\n  error: String\n  posts: [Post!]\n}\n\ntype seeFullPostResponse {\n  ok: Boolean!\n  error: String\n  post: Post\n}\n\ntype uploadResponse {\n  ok: Boolean!\n  error: String\n  post: Post\n}\n\ntype confirmSecretResponse {\n  ok: Boolean!\n  error: String\n  token: String\n}\n\ntype createAccountResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype editUserResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype followResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype meResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype requestSecretRespone {\n  ok: Boolean!\n  error: String\n}\n\ntype searchUserResponse {\n  ok: Boolean\n  error: String\n  user: [User]\n}\n\ntype seeUserResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype unfollowResponse {\n  ok: Boolean!\n  error: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
   searchPost: searchPostResponse;
+  seeFeed: seeFeedResponse;
   seeFullPost: seeFullPostResponse;
   me: meResponse;
   searchUser: searchUserResponse;
@@ -97,6 +98,12 @@ export interface File {
   post: Post;
 }
 
+export interface seeFeedResponse {
+  ok: boolean | null;
+  error: string | null;
+  posts: Array<Post>;
+}
+
 export interface seeFullPostResponse {
   ok: boolean;
   error: string | null;
@@ -124,6 +131,7 @@ export interface seeUserResponse {
 export interface Mutation {
   addComment: addCommentResponse;
   toggleLike: toggleLikeResponse;
+  editPost: editPostResponse;
   upload: uploadResponse;
   confirmSecret: confirmSecretResponse;
   createAccount: createAccountResponse;
@@ -140,6 +148,13 @@ export interface AddCommentMutationArgs {
 
 export interface ToggleLikeMutationArgs {
   postId: string;
+}
+
+export interface EditPostMutationArgs {
+  id: string;
+  caption: string | null;
+  location: string | null;
+  action: ACTIONS;
 }
 
 export interface UploadMutationArgs {
@@ -189,6 +204,14 @@ export interface addCommentResponse {
 export interface toggleLikeResponse {
   ok: boolean;
   error: string | null;
+}
+
+export type ACTIONS = "EDIT" | "DELETE";
+
+export interface editPostResponse {
+  ok: boolean;
+  error: string | null;
+  post: Post | null;
 }
 
 export interface uploadResponse {

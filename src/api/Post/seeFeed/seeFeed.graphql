@@ -1,0 +1,10 @@
+type seeFeedResponse {
+    ok: Boolean
+    error: String
+    posts: [Post!]
+}
+
+
+type Query {
+    seeFeed: seeFeedResponse!
+}
