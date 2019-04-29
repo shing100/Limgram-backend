@@ -1,6 +1,7 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/privateAuth";
 import { SendMessageMutationArgs } from '../../../types/graph';
+import { message } from "../Message";
 
 const resolvers: Resolvers = {
     Mutation: {
@@ -71,7 +72,8 @@ const resolvers: Resolvers = {
                 }
             }
         })
-    }
+    },
+    ...message
 }
 
 export default resolvers;

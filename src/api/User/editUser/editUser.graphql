@@ -5,5 +5,5 @@ type editUserResponse {
 }
 
 type Mutation { 
-    editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!
+    editUser(username: String, email: String, firstName: String, lastName: String, bio: String, avatar: String): editUserResponse!
 }

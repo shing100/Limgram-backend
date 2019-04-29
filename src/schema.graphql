@@ -11,8 +11,8 @@ type Mutation {
   editPost(id: String!, caption: String, location: String, action: ACTIONS!): editPostResponse!
   upload(caption: String!, files: [String!]!): uploadResponse!
   confirmSecret(secret: String!, email: String!): confirmSecretResponse!
-  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String): createAccountResponse!
-  editUser(username: String, email: String, firstName: String, lastName: String, bio: String): editUserResponse!
+  createAccount(username: String!, email: String!, firstName: String, lastName: String, bio: String, avatar: String): createAccountResponse!
+  editUser(username: String, email: String, firstName: String, lastName: String, bio: String, avatar: String): editUserResponse!
   follow(id: String!): followResponse!
   requestSecret(email: String): requestSecretRespone!
   unfollow(id: String!): unfollowResponse!
@@ -31,6 +31,7 @@ type sendMessageResponse {
 
 type User {
   id: ID!
+  avatar: String
   username: String!
   email: String!
   firstName: String
@@ -116,6 +117,7 @@ type Query {
   searchPost(term: String!): searchPostResponse!
   seeFeed: seeFeedResponse!
   seeFullPost(id: String!): seeFullPostResponse!
+  seeRoom(id: String!): seeRoomResponse!
   seeRooms: seeRoomsResponse!
   me: meResponse!
   searchUser(term: String!): searchUserResponse!
@@ -138,6 +140,12 @@ type uploadResponse {
   ok: Boolean!
   error: String
   post: Post
+}
+
+type seeRoomResponse {
+  ok: Boolean!
+  error: String
+  room: Room
 }
 
 type seeRoomsResponse {
