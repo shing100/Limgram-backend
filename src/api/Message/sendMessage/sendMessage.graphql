@@ -1,0 +1,9 @@
+type sendMessageResponse {
+    ok: Boolean
+    error: String
+    message: Message
+}
+
+type Mutation {
+    sendMessage(roomId: String, message: String!, toId: String): sendMessageResponse!
+}

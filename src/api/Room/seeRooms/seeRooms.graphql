@@ -1,0 +1,9 @@
+type seeRoomsResponse {
+    ok: Boolean!
+    error: String
+    rooms: [Room!]
+}
+
+type Query {
+    seeRooms: seeRoomsResponse!
+}
