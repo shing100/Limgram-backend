@@ -1,12 +1,10 @@
 import { Resolvers } from "../../../types/resolvers";
-import privateResolver from "src/utils/privateAuth";
+import privateResolver from "../../../utils/privateAuth";
 import { SendMessageMutationArgs } from '../../../types/graph';
-import { prisma } from "generated/prisma-client";
-
 
 const resolvers: Resolvers = {
     Mutation: {
-        sendMessage: privateResolver(async(_, args: SendMessageMutationArgs, { request }) => {
+        sendMessage: privateResolver(async (_, args: SendMessageMutationArgs, { request, prisma }) => {
             const { user } = request;
             const { roomId, message, toId } = args;
             let room;
