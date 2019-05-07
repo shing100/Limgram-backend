@@ -1,0 +1,9 @@
+type newMessageResponse {
+    ok: Boolean!
+    error: String
+    message: Message
+}
+
+type Subscription {
+    newMessage(roomId: String!): newMessageResponse
+}

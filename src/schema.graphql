@@ -23,6 +23,16 @@ type toggleLikeResponse {
   error: String
 }
 
+type newMessageResponse {
+  ok: Boolean!
+  error: String
+  message: Message
+}
+
+type Subscription {
+  newMessage(roomId: String!): newMessageResponse
+}
+
 type sendMessageResponse {
   ok: Boolean
   error: String
@@ -61,6 +71,7 @@ type Post {
   likeCount: Int!
   isLiked: Boolean!
   comments: [Comment!]!
+  commentCount: Int!
 }
 
 type Like {
