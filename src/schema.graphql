@@ -23,6 +23,16 @@ type toggleLikeResponse {
   error: String
 }
 
+type newMessageResponse {
+  ok: Boolean!
+  error: String
+  message: Message
+}
+
+type Subscription {
+  newMessage(roomId: String!): newMessageResponse
+}
+
 type sendMessageResponse {
   ok: Boolean
   error: String
