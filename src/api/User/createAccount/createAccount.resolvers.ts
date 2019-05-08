@@ -6,7 +6,16 @@ const resolvers: Resolvers = {
     Mutation: {
         createAccount: async (_, args: CreateAccountMutationArgs, {prisma}): Promise<createAccountResponse> => {
             try {
-                const existUser = await prisma.user({email: args.email, username: args.username});
+                const existUser = await prisma.user({
+                    OR: [ 
+                        {
+                            email: args.email
+                        }, 
+                        {
+                            username: args.username
+                        } 
+                    ]
+                });
                 if(!existUser){
                     const notNull = cleanNullArgs(args);
                     const user = await prisma.createUser({
